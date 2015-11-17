@@ -1,0 +1,17 @@
+{
+  "name": "pdt-app",
+  "version": "1.0.0",
+  "description": "MapBox application displaying PostGIS data",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "postgeo": "^0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Sustek",
+  "license": "ISC"
+}

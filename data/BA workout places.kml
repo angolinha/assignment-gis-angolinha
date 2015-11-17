@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+	<Document>
+		<name>BA workout places</name>
+		<Placemark>
+			<name>Líščie údolie</name>
+			<description><![CDATA[vysoká hrazda [5], nízka hrazda [3], rebriny [1], bradlá [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.0546544,48.1622014,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>FTVŠ UK - Lafranconi</name>
+			<description><![CDATA[vysoká hrazda [2], nízka hrazda [3], bradlá [2], rebriny [1], kruhy [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.077091,48.1447422,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Kuchajda 1</name>
+			<description><![CDATA[vysoká hrazda [6], rebriny [2], bradlá [1], nízka hrazda [2], kruhy [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1448624,48.1703027,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Kuchajda 2</name>
+			<description><![CDATA[rebriny [1], bradlá [1], nízka hrazda [2]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1418503,48.171545,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Mladá Garda</name>
+			<description><![CDATA[vysoká hrazda [6], rebriny [1], bradlá [1], nízke bradlá [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1260494,48.1775532,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Líščie údolie - osamelá hrazda</name>
+			<description><![CDATA[hrazda [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.0575511,48.161026,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Mladosť - basketbalové koše</name>
+			<description><![CDATA[hrazda [2]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.065587,48.1586142,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Draždiak - Locomotiva Street Workout park</name>
+			<description><![CDATA[vysoká hrazda [8], nízka hrazda [2], bradlá [2], nízke bradlá [1], rebriny [1],  kruhy [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1121716,48.1064425,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>ZŠ Tbiliská - Rača</name>
+			<description><![CDATA[hrazda [6], nízka hrazda [2], bradlá [2], rebriny [2]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1614814,48.2150295,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Ľudovíta Fullu - Karlova Ves</name>
+			<description><![CDATA[hrazda [2], bradlá [1], kruhy [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.0512909,48.1547314,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>No Will No Skill Academy</name>
+			<description><![CDATA[{INDOOR} - akadémia pohybu, hrazda [8], kruhy [6], rebriny [2], bradlá [1]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1301317,48.1415708,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Skill Lab</name>
+			<description><![CDATA[{INDOOR} - akadémia pohybu, rebriny [4], bradlá [1], hrazda [4], kruhy [3]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1198454,48.1149851,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Crossfit Proton</name>
+			<description><![CDATA[{INDOOR} - crossfit telocvičňa, hrazda [15], kruhy [10], bradlá [2]]]></description>
+			<styleUrl>#icon-503-DB4436</styleUrl>
+			<ExtendedData>
+			</ExtendedData>
+			<Point>
+				<coordinates>17.1547651,48.1738418,0.0</coordinates>
+			</Point>
+		</Placemark>
+		<Style id='icon-503-DB4436-normal'>
+			<IconStyle>
+				<color>ff3644DB</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>0.0</scale>
+			</LabelStyle>
+		</Style>
+		<Style id='icon-503-DB4436-highlight'>
+			<IconStyle>
+				<color>ff3644DB</color>
+				<scale>1.1</scale>
+				<Icon>
+					<href>http://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+				</Icon>
+				<hotSpot x='16' y='31' xunits='pixels' yunits='insetPixels'>
+				</hotSpot>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.1</scale>
+			</LabelStyle>
+		</Style>
+		<StyleMap id='icon-503-DB4436'>
+			<Pair>
+				<key>normal</key>
+				<styleUrl>#icon-503-DB4436-normal</styleUrl>
+			</Pair>
+			<Pair>
+				<key>highlight</key>
+				<styleUrl>#icon-503-DB4436-highlight</styleUrl>
+			</Pair>
+		</StyleMap>
+	</Document>
+</kml>

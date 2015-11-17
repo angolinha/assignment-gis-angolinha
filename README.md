@@ -3,16 +3,16 @@
 **Application description**:
 
 - Web application
-- Find and filter outdoor workout locations (street workout parks, pull-up bars, children playgrounds, ball sports fields, etc.)
+- Find and filter public workout locations (street workout parks, pull-up bars, movement academies, etc.)
 - Filtering based on type and equipment present
 
-**Data source**: Manually added data exported in CSV format from GoogleMyPlaces
+**Data source**: Manually created data exported from Google My Maps in KML format
 
 **Technologies used**:
 
-- MapBox, MapBoxJS
-- OpenStreetMaps
-- PostGIS
+- MapBox with MapBoxJS
+- PostgreSQL with PostGIS
+- NodeJS with ExpressJS
 - AngularJS
 
 # General course assignment

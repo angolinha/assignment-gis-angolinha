@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Database Technologies - MapBox application</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+</head>
+<body ng-app="pdtApp">
+    <div class="wrapper row" ng-controller="appCtrl">
+        <div class="col-lg-3 sidebar">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4>Filter by available equipment:</h4>
+                </div>
+                <div class="col-lg-12">
+                    <tags-input
+                    ng-model="query.equipment"
+                    ng-change="query()"
+                    display-property="name"
+                    placeholder="Add an item"
+                    replace-spaces-with-dashes="false">
+                        <auto-complete
+                            source="loadEquipment($query)"
+                            min-length="0"
+                            load-on-focus="true"
+                            load-on-empty="true"
+                            max-results-to-show="6">
+                        </auto-complete>
+                    </tags-input>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                <h4>Filter by city district:</h4>
+                </div>
+                <div class="col-lg-12">
+                    <tags-input
+                        ng-model="query.districts"
+                        ng-change="query()"
+                        display-property="name"
+                        placeholder="Add a district"
+                        replace-spaces-with-dashes="false">
+                            <auto-complete
+                                source="loadDistricts($query)"
+                                min-length="0"
+                                load-on-focus="true"
+                                load-on-empty="true"
+                                max-results-to-show="6">
+                            </auto-complete>
+                    </tags-input>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-5">
+                    <input type="checkbox" ng-model="query.closest" ng-change="query()" id="closest">
+                    <label for="closest">Closest to me</label>
+                </div>
+                <div class="col-lg-7">
+                    <input type="checkbox" ng-model="query.bus_close" ng-change="query()" id="bus_close">
+                    <label for="bus_close">Closest to bus stop</label>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-4">
+                    <input type="checkbox" ng-model="query.indoor" ng-change="query()" id="indoor">
+                    <label for="indoor">INDOOR</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="checkbox" ng-model="query.outdoor" ng-change="query()" id="outdoor">
+                    <label for="outdoor">OUTDOOR</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 content" ui-view>
+            <mapbox callback="callback"></mapbox>
+        </div>
+    </div>
+    <script src="http://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+    <script src="http://rawgit.com/angular-ui/ui-router/0.2.13/release/angular-ui-router.js"></script>
+    <script src="angularApp.js"></script>
+    <script src="http://mbenford.github.io/ngTagsInput/js/ng-tags-input.min.js"></script>
+</body>
+</html>

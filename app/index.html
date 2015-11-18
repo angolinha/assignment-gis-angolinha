@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <tags-input
                     ng-model="query.equipment"
-                    ng-change="query()"
+
                     display-property="name"
                     placeholder="Add an item"
                     replace-spaces-with-dashes="false">
@@ -39,7 +39,6 @@
                 <div class="col-lg-12">
                     <tags-input
                         ng-model="query.districts"
-                        ng-change="query()"
                         display-property="name"
                         placeholder="Add a district"
                         replace-spaces-with-dashes="false">
@@ -56,23 +55,29 @@
             <hr>
             <div class="row">
                 <div class="col-lg-5">
-                    <input type="checkbox" ng-model="query.closest" ng-change="query()" id="closest">
+                    <input type="checkbox" ng-model="query.closest" id="closest" ng-disabled="query.bus_close">
                     <label for="closest">Closest to me</label>
                 </div>
                 <div class="col-lg-7">
-                    <input type="checkbox" ng-model="query.bus_close" ng-change="query()" id="bus_close">
+                    <input type="checkbox" ng-model="query.bus_close" id="bus_close" ng-disabled="query.closest">
                     <label for="bus_close">Closest to bus stop</label>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-lg-4">
-                    <input type="checkbox" ng-model="query.indoor" ng-change="query()" id="indoor">
+                    <input type="checkbox" ng-model="query.indoor" id="indoor">
                     <label for="indoor">INDOOR</label>
                 </div>
                 <div class="col-lg-5">
-                    <input type="checkbox" ng-model="query.outdoor" ng-change="query()" id="outdoor">
+                    <input type="checkbox" ng-model="query.outdoor" id="outdoor">
                     <label for="outdoor">OUTDOOR</label>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12 text-right">
+                    <div class="btn btn-primary" ng-click="run_query()">SHOW ME!</div>
                 </div>
             </div>
         </div>

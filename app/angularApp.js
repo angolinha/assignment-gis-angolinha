@@ -12,8 +12,7 @@ app.directive('mapbox', [
       link: function (scope, element, attributes) {
         L.mapbox.accessToken = 'pk.eyJ1IjoiYW5nb2xpbmhhIiwiYSI6ImNpZnliN3B3ZjAyZ2F0Y20waHJjdmE2NTQifQ.zIEssGxujGGZ01-RoO5dPQ';
         var map = L.mapbox.map(element[0], 'angolinha.o6879d61');
-        var mapBox = L.mapbox;
-        scope.callback(map, mapBox);
+        scope.callback(map);
       }
     };
   }
@@ -38,80 +37,79 @@ app.controller('appCtrl', [
 
     function init(){
       $scope.equipment = [
-        {"id": 0, "name": "vysoká hrazda", "value": "vysoka_hrazda"},
-        {"id": 1, "name": "nízka hrazda", "value": "nizka_hrazda"},
-        {"id": 2, "name": "rebriny", "value": "rebriny"},
-        {"id": 3, "name": "bradlá", "value": "bradla"},
-        {"id": 4, "name": "kruhy", "value": "kruhy"},
-        {"id": 5, "name": "nízke bradlá", "value": "nizke_bradla"}
+        {"name": "vysoká hrazda", "value": "vysoka_hrazda"},
+        {"name": "nízka hrazda", "value": "nizka_hrazda"},
+        {"name": "rebriny", "value": "rebriny"},
+        {"name": "bradlá", "value": "bradla"},
+        {"name": "kruhy", "value": "kruhy"},
+        {"name": "nízke bradlá", "value": "nizke_bradla"}
       ];
       $scope.districts = [
-        { "id": 1, "name": "Oblasť Bôrik" },
-        { "id": 2, "name": "Oblasť Partizánska" },
-        { "id": 3, "name": "Oblasť Dunajská" },
-        { "id": 4, "name": "Krasňany" },
-        { "id": 5, "name": "Berg" },
-        { "id": 6, "name": "Dvory" },
-        { "id": 7, "name": "Rovinka" },
-        { "id": 8, "name": "Slovany" },
-        { "id": 9, "name": "Kapitulský Dvor" },
-        { "id": 10, "name": "Dlhé diely" },
-        { "id": 11, "name": "Nivy" },
-        { "id": 12, "name": "Karlova Ves" },
-        { "id": 13, "name": "Oblasť Drotárska cesta" },
-        { "id": 14, "name": "Lamač" },
-        { "id": 15, "name": "okres Bratislava I" },
-        { "id": 16, "name": "Oblasť Slavín" },
-        { "id": 17, "name": "Kramáre" },
-        { "id": 18, "name": "Jurajov dvor" },
-        { "id": 19, "name": "Čierna voda" },
-        { "id": 20, "name": "Trnávka" },
-        { "id": 21, "name": "Historické jadro" },
-        { "id": 22, "name": "Vlčie hrdlo" },
-        { "id": 23, "name": "Dúbravka" },
-        { "id": 24, "name": "Háje" },
-        { "id": 25, "name": "Štrkovec" },
-        { "id": 26, "name": "Vinohrady" },
-        { "id": 27, "name": "Kopčany" },
-        { "id": 28, "name": "Lúky" },
-        { "id": 29, "name": "Oblasť Obchodná" },
-        { "id": 30, "name": "Oblasť Patrónka" },
-        { "id": 31, "name": "Nové Mesto" },
-        { "id": 32, "name": "Ružinov" },
-        { "id": 33, "name": "Vrakuňa" },
-        { "id": 34, "name": "Farná" },
-        { "id": 35, "name": "Mierová kolónia" },
-        { "id": 36, "name": "Trávniky" },
-        { "id": 37, "name": "Ostredky" },
-        { "id": 38, "name": "Mlynská dolina" },
-        { "id": 39, "name": "Prievoz" },
-        { "id": 40, "name": "Pošeň" },
-        { "id": 41, "name": "Starý Ružinov" },
-        { "id": 42, "name": "Žabí majer" },
-        { "id": 43, "name": "Bratislava - mestská časť Staré Mesto" },
-        { "id": 44, "name": "Pasienky" },
-        { "id": 45, "name": "Východné" },
-        { "id": 46, "name": "Vajnory" },
-        { "id": 47, "name": "Medzi jarkami" },
-        { "id": 48, "name": "Oblasť Žilinská" },
-        { "id": 49, "name": "Tehelné pole" }
+        { "name": "Mlynská dolina" }, { "name": "Ostredky" }, { "name": "Nové Mesto" },
+        { "name": "Krasňany" }, { "name": "Vinohrady" }, { "name": "Vlčie hrdlo" },
+        { "name": "Trnávka" }, { "name": "Karlova Ves" }, { "name": "Dlhé diely" },
+        { "name": "Bratislava - mestská časť Staré Mesto" }, { "name": "Pasienky" },
+        { "name": "Slovany" }, { "name": "Oblasť Drotárska cesta" }, { "name": "Lamač" },
+        { "name": "okres Bratislava I" }, { "name": "Oblasť Slavín" }, { "name": "Kramáre" },
+        { "name": "Jurajov dvor" }, { "name": "Čierna voda" }, { "name": "Rovinka" },
+        { "name": "Historické jadro" }, { "name": "Dvory" }, { "name": "Dúbravka" },
+        { "name": "Háje" }, { "name": "Štrkovec" }, { "name": "Berg" },
+        { "name": "Kopčany" }, { "name": "Lúky" }, { "name": "Oblasť Obchodná" },
+        { "name": "Oblasť Patrónka" }, { "name": "Oblasť Dunajská" }, { "name": "Ružinov" },
+        { "name": "Vrakuňa" }, { "name": "Farná" }, { "name": "Mierová kolónia" },
+        { "name": "Trávniky" }, { "name": "Oblasť Partizánska" }, { "name": "Oblasť Bôrik" },
+        { "name": "Prievoz" }, { "name": "Pošeň" }, { "name": "Starý Ružinov" },
+        { "name": "Žabí majer" }, { "name": "Kapitulský Dvor" }, { "name": "Nivy" },
+        { "name": "Východné" }, { "name": "Vajnory" }, { "name": "Medzi jarkami" },
+        { "name": "Oblasť Žilinská" }, { "name": "Tehelné pole" }
       ];
       $scope.query = {
         "indoor": false,
         "outdoor": false,
+        "bus_close": false,
+        "closest": false,
         "districts": [],
         "equipment": []
       };
+      $scope.longitude = null;
+      $scope.latitude = null;
     }
 
     function query(){
       $http({
-        method: 'GET',
-        url: 'http://localhost:3000/api/'
+        method: 'POST',
+        url: 'http://localhost:3000/api/',
+        data: {
+          "longitude": $scope.longitude,
+          "latitude": $scope.latitude
+        }
       }).then(function successCallback(response) {
-        $scope.geojson = response.data.features;
-        $scope.mapBox.featureLayer().setGeoJSON($scope.geojson).addTo($scope.map);
+        var markers = L.mapbox.featureLayer().setGeoJSON(response.data.features).addTo($scope.map);
+
+        markers.setFilter(function(f){
+          if($scope.query.equipment.length){
+            var matches = 0;
+            for(var k in $scope.query.equipment){
+              for(var j in f.properties["p_equipment"]){
+                if(f.properties["p_equipment"][j] == $scope.query.equipment[k]){
+                  matches++;
+                }
+              }
+            }
+            if(matches == $scope.query.equipment.length){
+              return true;
+            } else {
+              return false;
+            }
+          }
+          return true;
+          //return (filter === 'all') ? true : f.properties["p_distance"] === true;
+        });
       });
+    }
+
+    $scope.run_query = function(){
+      query();
     }
 
     $scope.loadEquipment = function($query) {
@@ -126,11 +124,21 @@ app.controller('appCtrl', [
       });
     };
 
-    $scope.callback = function (map, mapBox) {
+    $scope.callback = function (map) {
       map.setView([48.1447422, 17.110000], 12);
       $scope.map = map;
-      $scope.mapBox = mapBox;
-      query();
+      // if(navigator.geolocation) {
+      //   navigator.geolocation.getCurrentPosition(function(position){
+      //     $scope.$apply(function(){
+      //       console.log(position);
+      //       $scope.longitude = position.coords.longitude;
+      //       $scope.latitude = position.coords.latitude;
+      //       query();
+      //     });
+      //   });
+      // } else {
+        query();
+      // }
     };
   }
 ]);

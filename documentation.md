@@ -11,38 +11,47 @@ Sample screenshot:
 
 ![Screenshot](screenshot.png)
 
-The application has 2 separate parts, the client which is a [frontend web application](#frontend) using mapbox API and mapbox.js and the [backend application](#backend) written in [Rails](http://rubyonrails.org/), backed by PostGIS. The frontend application communicates with backend using a [REST API](#api).
+The application has 2 separate parts:
+- the client which is a [AngularJS web application](#frontend) using mapbox API and mapbox.js
+- the [backend application](#backend) written in [ExpressJS](http://expressjs.com/), communicating with PostGIS via [Postgeo plugin](https://www.npmjs.com/package/postgeo).
+The frontend application communicates with backend using a [REST API](#api).
+
+# Setup
+
+- install and run Docker container mdillon//postgis (docker run -p 5432:5432 -d mdillon/postgis)
+- connect to database `postgres` and run SQL commands from `/data/load.sql`
+- download OSM data for Bratislava city and import them into mentioned database (osm2pgsql -H 192.168.99.100 -P 5432 -s -U postgres -d postgres data/Bratislava.osm)
+- go to application root (cd app) and run API server (node app.js) that will be listening on port 3000
 
 # Frontend
 
-The frontend application is HTML page `/app/views/home/index.html.erb` which shows map using mapbox.js widget. To communicate with backend is used Javascript (jQuery and AJAX). On map are shown supermarkets and malls in Bratislava region. My own style of map is based on Street style. I modified the map style in following things:
-- changed color of roads - highways (red), main roads (yellow), streets (black)
-- changed color of buildings and places - hospital (red), cementary (gray), parking (blue)
-I modified roads colors to easily find way to supermarket. Parking has had same color as buildings, so I changed it to easily find parking close to supermarket.
-
-Frontend code which reads form inputs, initiates the map, redirects to results and reads position of marker from map is in `/app/views/home/index.html.erb`. Other frontend code - to communicate with backend (AJAX) and render geojson to map returned from backend is in `app/assets/javascripts/application.js`.
+The frontend application consists of HTML page `/app/index.html` and AngularJS module `/app/angularApp.js` which shows map using mapbox.js widget and communicates with backend via AJAX calls. Map displays public workout places in Bratislava city.
 
 # Backend
 
-The backend application is written in Ruby on Rails and is responsible for querying geo data and formatting the geojson. This functionality is implemented in `app/models/Planet_osm_polygon.rb`, data receiver from frontend is implemented in `app/controllers/home_controller.rb` and output from backend is rendered in `app/views/home/generate_geojson.json.erb`.
+The backend application is written in ExpressJS (application server for NodeJS) and it's just simple API endpoint querying data from PostgreSQL database using postgeo plugin and returning them in GeoJSON format. Module can be found at `/app/app.js`.
 
 ## Data
 
-Data is coming directly from Open Street Maps. I downloaded Bratislava region data (around 200 MB) and imported it using the `osm2pgsql` tool into the standard OSM schema in WGS 84 with hstore enabled. To speedup queries I created these indexes:
-- on column `name` in table `planet_osm_polygons`
-- on column `highway` in table `planet_osm_lines`
-- on column `highway` in table `planet_osm_points`
-- on column `title` in table `shops`
+Application uses direct access to MapBox API for map rendering. Only other data sources are:
+- public workout location data created via Google My Maps, exported in KML format and transformed into Postgis queries
+- OSM export of portion of Bratislava city
 
 ## Api
 
-**Find closest supermarkets and malls by name, from specific position**
-
-`POST '/generate_gejson?parameter=1&latitude= 48.190206&longitude=17.045348&search_for_centers=1&filter=Billa,Lidl,Baumax`
+**API accepts queries via POST in JSON format. Only query parameters are current user's geolocation (longitude, latitude)**
 
 ### Response
 
-API returns `geojson` which contains geometry and properties for each finded supermarket. I get geometry from PostGIS function `ST_AsGeoJSON`, and properties are created by data from database. Example for properties part of geojson:
+API returns `geojson` which contains geometry and properties for each finded workout place. Properties that are later used in interface are:
+- equipment list
+- city district to which certain place belongs
+- distance from current user's geolocation
+- distance from closest bus stop
+- INDOOR/OUTDOOR flag
+
+Sample record:
+
 ```
 {
   "fillColor": "#FF00FF",
@@ -56,5 +65,3 @@ API returns `geojson` which contains geometry and properties for each finded sup
     "description": "234 metres away, area of shop: 400 m<sup>2</sup>"
 }
 ```
-
-`geojson` contains a geojson with locations of all matched supermarkets or malls and style definitions.

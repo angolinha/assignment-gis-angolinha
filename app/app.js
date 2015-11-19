@@ -36,7 +36,7 @@ app.post('/api/', function(req, res) {
 
     postgeo.query(query, "geojson", function(data) {
         var places = data;
-        query = "SELECT DISTINCT ON(w.p_name) w.p_name, 'bus_stop' AS p_type, p.name as stop_name, ST_ASGeoJSON(p.way) AS geometry,\
+        query = "SELECT DISTINCT ON(w.p_name) w.p_name, 'bus_stop' AS p_type, p.name as stop_name, ST_AsGeoJSON(st_transform(p.way,4326)) AS geometry,\
             ST_Distance(st_transform(p.way,26986), st_transform(w.p_position,26986)) AS p_distance\
             FROM workout_places w LEFT JOIN planet_osm_point p ON p.public_transport = 'stop_position' AND p.operator = 'DPB'\
             AND ST_DWithin(st_transform(p.way,26986), st_transform(w.p_position,26986), 420)";
@@ -44,6 +44,15 @@ app.post('/api/', function(req, res) {
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
             res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
 
+            for(var k in places.features){
+                places.features[k].properties["marker-symbol"] = "pitch";
+                places.features[k].properties["marker-size"] = "large";
+                places.features[k].properties["marker-color"] = "#4FC29F";
+            }
+            for(var k in data.features){
+                data.features[k].properties["marker-symbol"] = "bus";
+                data.features[k].properties["marker-color"] = "#990000";
+            }
             res.json({
                 "places": places,
                 "bus_stops": data

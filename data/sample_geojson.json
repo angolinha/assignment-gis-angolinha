@@ -1,0 +1,605 @@
+{
+    "bus_stops": {
+        "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1572392793896,
+                        48.1767909663108
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 378.131727412405,
+                    "p_name": "Crossfit Proton",
+                    "p_type": "bus_stop",
+                    "stop_name": "Mierová kolónia"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1073199888826,
+                        48.1062770136476
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 363.752810410968,
+                    "p_name": "Drazdiak - Locomotiva Street Workout park",
+                    "p_type": "bus_stop",
+                    "stop_name": "Šintavská"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0785504537618,
+                        48.1449005696382
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 110.634546234506,
+                    "p_name": "FTVS UK - Lafranconi",
+                    "p_type": "bus_stop",
+                    "stop_name": "Lafranconi"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1454365843661,
+                        48.1719398119412
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 188.023637470543,
+                    "p_name": "Kuchajda 1",
+                    "p_type": "bus_stop",
+                    "stop_name": "ŽST Nové Mesto"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1408366711223,
+                        48.1714473024546
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 76.5955766784767,
+                    "p_name": "Kuchajda 2",
+                    "p_type": "bus_stop",
+                    "stop_name": "Zátišie"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0512873933726,
+                        48.1592600653325
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 414.249235712024,
+                    "p_name": "Liscie udolie",
+                    "p_type": "bus_stop",
+                    "stop_name": "MiÚ Karlova Ves"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0611309525929,
+                        48.1615514785559
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 274.166464293238,
+                    "p_name": "Liscie udolie - osamela hrazda",
+                    "p_type": "bus_stop",
+                    "stop_name": "Na Sitine"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0517478697872,
+                        48.1512034133859
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 395.945025361333,
+                    "p_name": "Ludovita Fullu - Karlova Ves",
+                    "p_type": "bus_stop",
+                    "stop_name": "Tománkova"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1276150871075,
+                        48.1746646740277
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 343.553581322689,
+                    "p_name": "Mlada Garda",
+                    "p_type": "bus_stop",
+                    "stop_name": "Riazanská"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0630160672166,
+                        48.158783313882
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 193.258832277217,
+                    "p_name": "Mladost - basketbalove kose",
+                    "p_type": "bus_stop",
+                    "stop_name": "Nad internátmi"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1306081838027,
+                        48.1428135961273
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 143.456542851749,
+                    "p_name": "No Will No Skill Academy",
+                    "p_type": "bus_stop",
+                    "stop_name": "Prístavná"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1214714190479,
+                        48.1123024630073
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 323.687893860821,
+                    "p_name": "Skill Lab",
+                    "p_type": "bus_stop",
+                    "stop_name": "Malý Draždiak"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.156755356946,
+                        48.213498503578
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 392.515916713975,
+                    "p_name": "ZS Tbiliska - Raca",
+                    "p_type": "bus_stop",
+                    "stop_name": "Závadská"
+                },
+                "type": "Feature"
+            }
+        ],
+        "type": "FeatureCollection"
+    },
+    "places": {
+        "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1547651,
+                        48.1738418
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0921972614474001,
+                    "p_district": "Nové Mesto",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "kruhy",
+                        "bradla"
+                    ],
+                    "p_id": 13,
+                    "p_name": "Crossfit Proton",
+                    "p_placement": "INDOOR",
+                    "p_position": "0101000020E6100000EA0F83AF9E273140C1D6B67240164840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1121716,
+                        48.1064425
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0714096969500613,
+                    "p_district": "Lúky",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "nizka_hrazda",
+                        "bradla",
+                        "nizke_bradla",
+                        "rebriny",
+                        "kruhy"
+                    ],
+                    "p_id": 8,
+                    "p_name": "Drazdiak - Locomotiva Street Workout park",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E61000003D8A2947B71C3140C63368E89F0D4840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.077091,
+                        48.1447422
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0194729770977574,
+                    "p_district": "Oblasť Bôrik",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "nizka_hrazda",
+                        "bradla",
+                        "rebriny",
+                        "kruhy"
+                    ],
+                    "p_id": 2,
+                    "p_name": "FTVS UK - Lafranconi",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E6100000E1D05B3CBC133140F1AC93E986124840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1448624,
+                        48.1703027
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0818749213785309,
+                    "p_district": "Nové Mesto",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "rebriny",
+                        "bradla",
+                        "nizka_hrazda",
+                        "kruhy"
+                    ],
+                    "p_id": 3,
+                    "p_name": "Kuchajda 1",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E61000008A6BC6B315253140D375977ACC154840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1418503,
+                        48.171545
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0790812748526523,
+                    "p_district": "Nové Mesto",
+                    "p_equipment": [
+                        "rebriny",
+                        "bradla",
+                        "nizka_hrazda"
+                    ],
+                    "p_id": 4,
+                    "p_name": "Kuchajda 2",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E6100000846D1F4D502431406B65C22FF5154840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0546544,
+                        48.1622014
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.00968440789361941,
+                    "p_district": "Karlova Ves",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "nizka_hrazda",
+                        "rebriny",
+                        "bradla"
+                    ],
+                    "p_id": 1,
+                    "p_name": "Liscie udolie",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E61000001F95ACD4FD0D3140C62EF603C3144840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0575511,
+                        48.161026
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.00656267544527243,
+                    "p_district": "Karlova Ves",
+                    "p_equipment": [
+                        "vysoka_hrazda"
+                    ],
+                    "p_id": 6,
+                    "p_name": "Liscie udolie - osamela hrazda",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E61000004D593CABBB0E314021E7FD7F9C144840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.0512909,
+                        48.1547314
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0131814435097163,
+                    "p_district": "Dlhé diely",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "bradla",
+                        "kruhy"
+                    ],
+                    "p_id": 10,
+                    "p_name": "Ludovita Fullu - Karlova Ves",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E610000019158266210D314008550F3DCE134840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1260494,
+                        48.1775532
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0649899397775557,
+                    "p_district": "Nové Mesto",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "rebriny",
+                        "bradla",
+                        "nizke_bradla"
+                    ],
+                    "p_id": 5,
+                    "p_name": "Mlada Garda",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E610000030AE02C6442031406BA63110BA164840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.065587,
+                        48.1586142
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.00184062474448331,
+                    "p_district": "Mlynská dolina",
+                    "p_equipment": [
+                        "vysoka_hrazda"
+                    ],
+                    "p_id": 7,
+                    "p_name": "Mladost - basketbalove kose",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E6100000F20A444FCA10314032D758784D144840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1301317,
+                        48.1415708
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0685928681219859,
+                    "p_district": "Nivy",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "kruhy",
+                        "rebriny",
+                        "bradla"
+                    ],
+                    "p_id": 11,
+                    "p_name": "No Will No Skill Academy",
+                    "p_placement": "INDOOR",
+                    "p_position": "0101000020E610000042ACA34F50213140C608F2FD1E124840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1198454,
+                        48.1149851
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0712514979571641,
+                    "p_district": "Háje",
+                    "p_equipment": [
+                        "rebriny",
+                        "bradla",
+                        "vysoka_hrazda",
+                        "kruhy"
+                    ],
+                    "p_id": 12,
+                    "p_name": "Skill Lab",
+                    "p_placement": "INDOOR",
+                    "p_position": "0101000020E610000077932930AE1E31407E03EED4B70E4840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            },
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1614814,
+                        48.2150295
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.112652132263268,
+                    "p_district": "Centrálna Rača",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "nizka_hrazda",
+                        "bradla",
+                        "rebriny"
+                    ],
+                    "p_id": 9,
+                    "p_name": "ZS Tbiliska - Raca",
+                    "p_placement": "OUTDOOR",
+                    "p_position": "0101000020E61000008CE953D8562931406E162F16861B4840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            }
+        ],
+        "type": "FeatureCollection"
+    }
+}

@@ -84,27 +84,36 @@ app.controller('appCtrl', [
           "latitude": $scope.latitude
         }
       }).then(function successCallback(response) {
-        var markers = L.mapbox.featureLayer().setGeoJSON(response.data.features).addTo($scope.map);
+        console.log(response.data);
+        var markers = L.mapbox.featureLayer().setGeoJSON(response.data.places.features).addTo($scope.map);
 
-        markers.setFilter(function(f){
-          if($scope.query.equipment.length){
-            var matches = 0;
-            for(var k in $scope.query.equipment){
-              for(var j in f.properties["p_equipment"]){
-                if(f.properties["p_equipment"][j] == $scope.query.equipment[k]){
-                  matches++;
-                }
-              }
-            }
-            if(matches == $scope.query.equipment.length){
-              return true;
-            } else {
-              return false;
-            }
-          }
-          return true;
-          //return (filter === 'all') ? true : f.properties["p_distance"] === true;
-        });
+        // markers.setFilter(function(f){
+        //   if($scope.query.equipment.length){
+        //     var matches = 0;
+        //     for(var k in $scope.query.equipment){
+        //       for(var j in f.properties["p_equipment"]){
+        //         if(f.properties["p_equipment"][j] == $scope.query.equipment[k]){
+        //           matches++;
+        //         }
+        //       }
+        //     }
+        //     if(matches == $scope.query.equipment.length){
+        //       return true;
+        //     } else {
+        //       return false;
+        //     }
+        //   }
+        //   return true;
+        //   return (filter === 'all') ? true : f.properties["p_distance"] === true;
+        // });
+      });
+    }
+
+    function success(position){
+      $scope.$apply(function(){
+        $scope.longitude = position.coords.longitude;
+        $scope.latitude = position.coords.latitude;
+        query();
       });
     }
 
@@ -127,18 +136,11 @@ app.controller('appCtrl', [
     $scope.callback = function (map) {
       map.setView([48.1447422, 17.110000], 12);
       $scope.map = map;
-      // if(navigator.geolocation) {
-      //   navigator.geolocation.getCurrentPosition(function(position){
-      //     $scope.$apply(function(){
-      //       console.log(position);
-      //       $scope.longitude = position.coords.longitude;
-      //       $scope.latitude = position.coords.latitude;
-      //       query();
-      //     });
-      //   });
-      // } else {
+      if("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(success, query);
+      } else {
         query();
-      // }
+      }
     };
   }
 ]);

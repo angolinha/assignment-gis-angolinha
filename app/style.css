@@ -6,6 +6,6 @@ html, body, div.wrapper, div.content, .leaflet-container {
 }
 .sidebar {
     padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 0;
+    padding-right: 50px;
+    padding-left: 0;
 }

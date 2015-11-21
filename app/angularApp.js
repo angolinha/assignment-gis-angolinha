@@ -1,23 +1,5 @@
 ﻿var app = angular.module('pdtApp', ['ui.router', 'ngTagsInput']);
 
-app.directive('mapbox', [
-  function () {
-    return {
-      restrict: 'EA',
-      replace: true,
-      scope: {
-        callback: "="
-      },
-      template: '<div></div>',
-      link: function (scope, element, attributes) {
-        L.mapbox.accessToken = 'pk.eyJ1IjoiYW5nb2xpbmhhIiwiYSI6ImNpZnliN3B3ZjAyZ2F0Y20waHJjdmE2NTQifQ.zIEssGxujGGZ01-RoO5dPQ';
-        var map = L.mapbox.map(element[0], 'angolinha.o6879d61');
-        scope.callback(map);
-      }
-    };
-  }
-]);
-
 app.config([
   '$stateProvider',
   '$urlRouterProvider',
@@ -31,11 +13,10 @@ app.config([
 ]);
 
 app.controller('appCtrl', [
-  '$scope', '$http',
-  function ($scope, $http) {
-    init();
+  '$scope', '$http', '$window',
+  function ($scope, $http, $window) {
 
-    function init(){
+    $scope.init = function(map){
       $scope.equipment = [
         {"name": "vysoká hrazda", "value": "vysoka_hrazda"},
         {"name": "nízka hrazda", "value": "nizka_hrazda"},
@@ -65,12 +46,25 @@ app.controller('appCtrl', [
       };
       $scope.longitude = null;
       $scope.latitude = null;
-      $scope.force = false;
       $scope.places = [];
       $scope.stops = [];
+      $scope.districts = [];
+      if(typeof map === 'undefined'){
+        $window.map.setView([48.1447422, 17.110000], 12);
+        $scope.map = $window.map;
+      } else {
+        map.setView([48.1447422, 17.110000], 12);
+        $scope.map = map;
+      }
+      if("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(success, query);
+      } else {
+        query();
+      }
     }
 
     function query(){
+      console.log('querying');
       $http({
         method: 'POST',
         url: 'http://localhost:3000/api/',
@@ -97,10 +91,29 @@ app.controller('appCtrl', [
           }
           $scope.stops = [];
         }
-        var places = filter_places(response.data.places.features);
-        var stops = filter_stops(response.data.bus_stops.features);
-        var place = L.mapbox.featureLayer().setGeoJSON(places).addTo($scope.map);
-        var stop = L.mapbox.featureLayer().setGeoJSON(stops).addTo($scope.map);
+        if($scope.districts.length){
+          for(var k in $scope.stops){
+            $scope.districts[k].eachLayer(function(marker) {
+              $scope.map.removeLayer(marker);
+            });
+            $scope.map.removeLayer($scope.districts[k]);
+          }
+          $scope.districts = [];
+        }
+        var place = L.mapbox.featureLayer()
+          .setGeoJSON(response.data.places.features)
+          .addTo($scope.map)
+          .setFilter(filter_places);
+
+        var stop = L.mapbox.featureLayer()
+          .setGeoJSON(response.data.bus_stops.features)
+          .addTo($scope.map)
+          .setFilter(filter_stops);
+
+        var district = L.mapbox.featureLayer()
+          .setGeoJSON(response.data.districts.features)
+          .addTo($scope.map)
+          .setFilter(filter_districts);
 
         place.eachLayer(function(marker) {
           marker.bindPopup(
@@ -118,40 +131,41 @@ app.controller('appCtrl', [
         });
         $scope.places.push(place);
         $scope.stops.push(stop);
+        $scope.districts.push(district);
       });
     }
 
-    function filter_places(places){
-      var result = [];
-      for(var k in places){
-        if($scope.query.indoor && !$scope.query.outdoor && places[k].properties.p_placement == 'OUTDOOR'){
-          continue;
-        }
-        if($scope.query.outdoor && !$scope.query.indoor && places[k].properties.p_placement == 'INDOOR'){
-          continue;
-        }
-        // if($scope.query.equipment.length){
-        //   var matches = 0;
-        //   for(var k in $scope.query.equipment){
-        //     for(var j in f.properties["p_equipment"]){
-        //       if(f.properties["p_equipment"][j] == $scope.query.equipment[k]){
-        //         matches++;
-        //       }
-        //     }
-        //   }
-        //   if(matches == $scope.query.equipment.length){
-        //     return true;
-        //   } else {
-        //     return false;
-        //   }
-        // }
-        result.push(places[k]);
+    function filter_places(place){
+      if($scope.query.indoor && !$scope.query.outdoor && place.properties.p_placement == 'OUTDOOR'){
+        return false;
       }
-      return result;
+      if($scope.query.outdoor && !$scope.query.indoor && place.properties.p_placement == 'INDOOR'){
+        return false;
+      }
+      // if($scope.query.equipment.length){
+      //   var matches = 0;
+      //   for(var k in $scope.query.equipment){
+      //     for(var j in f.properties["p_equipment"]){
+      //       if(f.properties["p_equipment"][j] == $scope.query.equipment[k]){
+      //         matches++;
+      //       }
+      //     }
+      //   }
+      //   if(matches == $scope.query.equipment.length){
+      //     return true;
+      //   } else {
+      //     return false;
+      //   }
+      // }
+      return true;
     }
 
     function filter_stops(stops){
-      return stops;
+      return true;
+    }
+
+    function filter_districts(districts){
+      return true;
     }
 
     function success(position){
@@ -163,8 +177,9 @@ app.controller('appCtrl', [
     }
 
     $scope.filter = function(){
-      $scope.force = true;
-      query();
+      $scope.places[$scope.places.length-1].setFilter(filter_places);
+      $scope.stops[$scope.stops.length-1].setFilter(filter_stops);
+      $scope.districts[$scope.districts.length-1].setFilter(filter_districts);
     }
 
     $scope.loadEquipment = function($query) {
@@ -177,16 +192,6 @@ app.controller('appCtrl', [
       return $scope.districts.filter(function(item) {
         return item.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
       });
-    };
-
-    $scope.callback = function(map) {
-      map.setView([48.1447422, 17.110000], 12);
-      $scope.map = map;
-      if("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(success, query);
-      } else {
-        query();
-      }
     };
   }
 ]);

@@ -41,21 +41,33 @@ app.post('/api/', function(req, res) {
             FROM workout_places w LEFT JOIN planet_osm_point p ON p.public_transport = 'stop_position' AND p.operator = 'DPB'\
             AND ST_DWithin(st_transform(p.way,26986), st_transform(w.p_position,26986), 420)";
         postgeo.query(query, "geojson", function(data) {
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-            res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+            var stops = data;
+            query = "SELECT DISTINCT ON(w.p_name) w.p_name, COALESCE(p.name, 'Bratislava') as p_district_name, 'district' AS p_type, \
+                ST_AsGeoJSON(ST_Transform(p.way,4326)) AS geometry \
+                FROM workout_places w LEFT JOIN planet_osm_polygon p ON p.boundary = 'administrative' \
+                AND p.admin_level = '10' AND ST_Contains(st_transform(p.way,26986), st_transform(w.p_position,26986));"
+            postgeo.query(query, "geojson", function(data) {
+                res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+                res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
 
-            for(var k in places.features){
-                places.features[k].properties["marker-symbol"] = "pitch";
-                places.features[k].properties["marker-size"] = "large";
-                places.features[k].properties["marker-color"] = "#4FC29F";
-            }
-            for(var k in data.features){
-                data.features[k].properties["marker-symbol"] = "bus";
-                data.features[k].properties["marker-color"] = "#990000";
-            }
-            res.json({
-                "places": places,
-                "bus_stops": data
+                for(var k in places.features){
+                    places.features[k].properties["marker-symbol"] = "pitch";
+                    places.features[k].properties["marker-size"] = "large";
+                    places.features[k].properties["marker-color"] = "#4FC29F";
+                }
+                for(var k in stops.features){
+                    stops.features[k].properties["marker-symbol"] = "bus";
+                    stops.features[k].properties["marker-color"] = "#990000";
+                }
+                for(var k in data.features){
+                    data.features[k].properties["fillColor"] = "#FD70FA";
+                    data.features[k].properties["fillOpacity"] = 0.8;
+                }
+                res.json({
+                    "places": places,
+                    "bus_stops": stops,
+                    "districts": data
+                });
             });
         });
     });

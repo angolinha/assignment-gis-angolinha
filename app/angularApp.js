@@ -46,9 +46,11 @@ app.controller('appCtrl', [
       };
       $scope.longitude = null;
       $scope.latitude = null;
-      $scope.places = [];
-      $scope.stops = [];
-      $scope.districts = [];
+      $scope.places = null;
+      $scope.stops = null;
+      $scope.map_districts = null;
+      $scope.min_from_me = 100000;
+      $scope.min_from_bus = 100000;
       if(typeof map === 'undefined'){
         $window.map.setView([48.1447422, 17.110000], 12);
         $scope.map = $window.map;
@@ -64,7 +66,6 @@ app.controller('appCtrl', [
     }
 
     function query(){
-      console.log('querying');
       $http({
         method: 'POST',
         url: 'http://localhost:3000/api/',
@@ -73,98 +74,79 @@ app.controller('appCtrl', [
           "latitude": $scope.latitude
         }
       }).then(function successCallback(response) {
-        if($scope.places.length){
-          for(var k in $scope.places){
-            $scope.places[k].eachLayer(function(marker) {
-              $scope.map.removeLayer(marker);
-            });
-            $scope.map.removeLayer($scope.places[k]);
-          }
-          $scope.places = [];
-        }
-        if($scope.stops.length){
-          for(var k in $scope.stops){
-            $scope.stops[k].eachLayer(function(marker) {
-              $scope.map.removeLayer(marker);
-            });
-            $scope.map.removeLayer($scope.stops[k]);
-          }
-          $scope.stops = [];
-        }
-        if($scope.districts.length){
-          for(var k in $scope.stops){
-            $scope.districts[k].eachLayer(function(marker) {
-              $scope.map.removeLayer(marker);
-            });
-            $scope.map.removeLayer($scope.districts[k]);
-          }
-          $scope.districts = [];
-        }
-        var place = L.mapbox.featureLayer()
+        $scope.places = L.mapbox.featureLayer()
           .setGeoJSON(response.data.places.features)
           .addTo($scope.map)
           .setFilter(filter_places);
 
-        var stop = L.mapbox.featureLayer()
+        $scope.stops = L.mapbox.featureLayer()
           .setGeoJSON(response.data.bus_stops.features)
           .addTo($scope.map)
           .setFilter(filter_stops);
 
-        var district = L.mapbox.featureLayer()
+        $scope.map_districts = L.mapbox.featureLayer()
           .setGeoJSON(response.data.districts.features)
-          .addTo($scope.map)
-          .setFilter(filter_districts);
+          .addTo($scope.map);
 
-        place.eachLayer(function(marker) {
-          marker.bindPopup(
-            '<h2>' + marker.toGeoJSON().properties.p_name + '<\/h2><small>' +
-            marker.toGeoJSON().properties.p_district + '<\/small><\/h2>' +
-            '<p>' + marker.toGeoJSON().properties.p_placement + '<\/p>'
-          );
-        });
+        bind_popups();
+      });
+    }
 
-        stop.eachLayer(function(marker) {
-          marker.bindPopup(
-            '<h2>' + marker.toGeoJSON().properties.stop_name + '<\/h2><small>' +
-            '<b>Closest to: <\/b>' + marker.toGeoJSON().properties.p_name + '<\/small><\/h2>'
-          );
-        });
-        $scope.places.push(place);
-        $scope.stops.push(stop);
-        $scope.districts.push(district);
+    function bind_popups(){
+      $scope.places.eachLayer(function(marker) {
+        marker.bindPopup(
+          '<h2>' + marker.toGeoJSON().properties.p_name + '<\/h2><small>' +
+          marker.toGeoJSON().properties.p_district + '<\/small><\/h2>' +
+          '<p>' + marker.toGeoJSON().properties.p_placement + '<\/p>'
+        );
+      });
+
+      $scope.stops.eachLayer(function(marker) {
+        marker.bindPopup(
+          '<h2>' + marker.toGeoJSON().properties.stop_name + '<\/h2><small>' +
+          '<b>Closest to: <\/b>' + marker.toGeoJSON().properties.p_name + '<\/small><\/h2>'
+        );
       });
     }
 
     function filter_places(place){
+      if(place.properties.p_distance < $scope.min_from_me){
+        $scope.min_from_me = place.properties.p_distance;
+      }
+      if($scope.query.closest && $scope.min_from_me != place.properties.p_distance){
+        return false;
+      }
       if($scope.query.indoor && !$scope.query.outdoor && place.properties.p_placement == 'OUTDOOR'){
         return false;
       }
       if($scope.query.outdoor && !$scope.query.indoor && place.properties.p_placement == 'INDOOR'){
         return false;
       }
-      // if($scope.query.equipment.length){
-      //   var matches = 0;
-      //   for(var k in $scope.query.equipment){
-      //     for(var j in f.properties["p_equipment"]){
-      //       if(f.properties["p_equipment"][j] == $scope.query.equipment[k]){
-      //         matches++;
-      //       }
-      //     }
-      //   }
-      //   if(matches == $scope.query.equipment.length){
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // }
+      if($scope.query.equipment.length){
+        for(var k in $scope.query.equipment){
+          if(place.properties["p_equipment"].indexOf($scope.query.equipment[k].value) == -1){
+            return false;
+          }
+        }
+      }
+      if($scope.query.districts.length){
+        for(var k in $scope.query.districts){
+          if(place.properties["p_district"] == $scope.query.districts[k].name){
+            return true;
+          }
+        }
+        return false;
+      }
       return true;
     }
 
-    function filter_stops(stops){
-      return true;
-    }
-
-    function filter_districts(districts){
+    function filter_stops(stop){
+      if(stop.properties.p_distance < $scope.min_from_bus){
+        $scope.min_from_bus = stop.properties.p_distance;
+      }
+      if($scope.query.bus_close && $scope.min_from_bus != stop.properties.p_distance){
+        return false;
+      }
       return true;
     }
 
@@ -177,9 +159,9 @@ app.controller('appCtrl', [
     }
 
     $scope.filter = function(){
-      $scope.places[$scope.places.length-1].setFilter(filter_places);
-      $scope.stops[$scope.stops.length-1].setFilter(filter_stops);
-      $scope.districts[$scope.districts.length-1].setFilter(filter_districts);
+      $scope.places.setFilter(filter_places);
+      $scope.stops.setFilter(filter_stops);
+      bind_popups();
     }
 
     $scope.loadEquipment = function($query) {

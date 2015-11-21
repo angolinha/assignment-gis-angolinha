@@ -2,7 +2,7 @@
 
 The application displays public street workout places in Bratislava city:
 - find the place closest to your position
-- find the place closest to any bus stop
+- find the bus stop closest to any workout place
 - filter places by equipment available
 - filter places by city district
 - filter places by indoor/outdoor placement
@@ -39,13 +39,19 @@ Application uses direct access to MapBox API for map rendering. Only other data 
 
 ## Api
 
-**API accepts queries via POST in JSON format. Only query parameters are current user's geolocation (longitude, latitude)**
+**API accepts queries via POST in JSON format. Only query parameter is current user's geolocation (longitude, latitude)**
 
 ### Response
 
-API returns `geojson` which contains geometry and properties for each finded workout place. Properties that are later used in interface are:
+API returns array with 3 `geojsons` which contain geometry and properties for each finded locality. Localities are divided into three groups:
+- workout places
+- bus stops
+- city districts
+
+Properties that are later used in interface are:
+
 - equipment list
-- city district to which certain place belongs
+- city district into which every specific place belongs
 - distance from current user's geolocation
 - distance from closest bus stop
 - INDOOR/OUTDOOR flag
@@ -54,14 +60,60 @@ Sample record:
 
 ```
 {
-  "fillColor": "#FF00FF",
-  "weight": "20",
-    "color": "#FF00FF",
-    "fillOpacity": 0.8,
-    "title": "Billa",
-    "distance": "329 metres away",
-    "area": "400",
-    "from": "Saratovská",
-    "description": "234 metres away, area of shop: 400 m<sup>2</sup>"
+    "bus_stops": {
+        "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1572392793896,
+                        48.1767909663108
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#990000",
+                    "marker-symbol": "bus",
+                    "p_distance": 378.131727412405,
+                    "p_name": "Crossfit Proton",
+                    "p_type": "bus_stop",
+                    "stop_name": "Mierová kolónia"
+                },
+                "type": "Feature"
+            }
+        ],
+        "type": "FeatureCollection"
+    },
+    "places": {
+        "features": [
+            {
+                "geometry": {
+                    "coordinates": [
+                        17.1547651,
+                        48.1738418
+                    ],
+                    "type": "Point"
+                },
+                "properties": {
+                    "marker-color": "#4FC29F",
+                    "marker-size": "large",
+                    "marker-symbol": "pitch",
+                    "p_distance": 0.0921972614474001,
+                    "p_district": "Nové Mesto",
+                    "p_equipment": [
+                        "vysoka_hrazda",
+                        "kruhy",
+                        "bradla"
+                    ],
+                    "p_id": 13,
+                    "p_name": "Crossfit Proton",
+                    "p_placement": "INDOOR",
+                    "p_position": "0101000020E6100000EA0F83AF9E273140C1D6B67240164840",
+                    "p_type": "place"
+                },
+                "type": "Feature"
+            }
+        ],
+        "type": "FeatureCollection"
+    }
 }
 ```
